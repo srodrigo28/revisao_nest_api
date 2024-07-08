@@ -79,6 +79,22 @@ nest g controller diarista --no-spec
 localhost:3000/diarista
 ```
 
+#### FrontEnd
+* Listar todos
+```
+http://localhost:3000/diaristas
+```
+
+* Listar Um
+```
+http://localhost:3000/diaristas/show/1
+```
+
+* Cadastrar
+```
+http://localhost:3000/diaristas/create
+```
+
 * configurando main.ts
     Express
 
