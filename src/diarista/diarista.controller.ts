@@ -1,16 +1,24 @@
 import { Controller, Get, Param, Render } from '@nestjs/common';
+import { Repository } from 'typeorm';
+import { Diarista } from './diarista.entity';
+import { InjectRepository } from '@nestjs/typeorm';
 
-@Controller('diarista')
+@Controller('diaristas')
 export class DiaristaController {
-    @Get(':id')
-    @Render('home')
-    root(@Param('id') id: number) {
-        // return 'Esta es la lista de diaristas';
+    constructor( 
+        @InjectRepository(Diarista)
+        private diaristaRepository: Repository<Diarista>,
+    ){}
 
-        const diaristas = [
-            { nome: 'Paulo' },
-            { nome: 'Alex' }
-        ];
-        return{ diarista: diaristas[id] };
+    @Get()
+    @Render('listar_diaristas')
+    async listarDiaristas() {
+        return { diaristas: await this.diaristaRepository.find() };
+    }
+
+    @Get(':id')
+    @Render('detalhes')
+    async exibirDiarista(@Param('id') id: number) {
+        return { diarista: await this.diaristaRepository.findOneBy({id: id}) };
     }
 }
