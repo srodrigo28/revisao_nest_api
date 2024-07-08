@@ -1,0 +1,38 @@
+<main class="container mt-3 d-flex flex-column align-items-center justify-content-center">
+    <h1>Editar</h1>
+    <form action="/diaristas/{{diarista.id}}?_method=Patch" method="POST">
+        <div class="row">
+
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <input 
+                    value="{{diarista.nome}}"
+                    text="text" id="nome" name="nome" 
+                    class="form-control" placeholder="nome"
+                />
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12">
+                <input 
+                    value="{{diarista.endereco}}"
+                    text="text" id="endereco" name="endereco"
+                    class="form-control" placeholder="endereco" 
+                />
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-12">
+                <input
+                    value="{{diarista.idade}}"
+                    text="text" id="idade" name="idade"
+                    class="form-control text-center" placeholder="idade"
+                />
+            </div>
+        </div>
+        
+        <div class="row mt-3">
+            <div class="col">
+                <button type="submit" class="btn btn-outline-warning">Atualizar</button>
+                <a href="http://localhost:3000/diaristas">
+                    <button class="btn btn-outline-danger">Cancelar</button>
+                </a>
+            </div>
+        </div>
+    </form>
+</main>

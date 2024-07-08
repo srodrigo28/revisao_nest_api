@@ -61,6 +61,11 @@ npm i express-handlebars
 npm i --save @nestjs/typeorm typeorm mysql2
 ```
 
+* Method-Override
+```
+npm i method-override
+```
+
 #### Comandos module
 * Criando pasta e module diarista
 ```

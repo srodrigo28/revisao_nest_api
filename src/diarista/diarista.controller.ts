@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Post, Redirect, Render, Req } from '@nestjs/common';
+import { Controller, Get, Param, Patch, Post, Redirect, Render, Req } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { Diarista } from './diarista.entity';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -27,8 +27,14 @@ export class DiaristaController {
     
     @Get('create') // Inserir View
     @Render('create')
-    createView(){
+    createView(){}
 
+    @Get(':id/edit') // Editar View
+    @Render('edit')
+    async edit(@Param('id') id: number){
+        const diarista = await this.diaristaRepository.findOneBy({ id: id })
+
+        return { diarista: diarista };
     }
 
     @Post('create') // Inserir Function
@@ -40,6 +46,19 @@ export class DiaristaController {
         diarista.endereco = request.body['endereco']
 
         return await this.diaristaRepository.save(diarista);
+    }
+
+    @Patch(':id') // Editar Function
+    @Redirect('/diaristas')
+    async update( @Param('id') id: number, @Req() request: Request){
+        const diarista = await this.diaristaRepository.findOneBy({ id: id });
+
+        diarista.nome = request.body['nome'];
+        diarista.idade = request.body['idade'];
+        diarista.endereco = request.body['endereco'];
+
+        return await this.diaristaRepository.save(diarista);
+
     }
 }
 
