@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Patch, Post, Redirect, Render, Req } from '@nestjs/common';
+import { Controller, Delete, Get, Param, Patch, Post, Redirect, Render, Req, Request } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { Diarista } from './diarista.entity';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -11,7 +11,7 @@ export class DiaristaController {
     ){}
 
     @Get() // LISTAR TODOS
-    @Render('listar_diaristas')
+    @Render('show')
     async listarDiaristas() {
         return { diaristas: await this.diaristaRepository.find(), titulo: 'Lista de Diaristas' };
     }
@@ -37,13 +37,14 @@ export class DiaristaController {
         return { diarista: diarista };
     }
 
-    @Post('create') // Inserir Function
+    @Post() // Inserir Function
     @Redirect('/diaristas')
-    async create(@Req() request: Request){
+    async create( @Req() request: Request ){
         const diarista = new Diarista();
+
         diarista.nome     = request.body['nome']
-        diarista.idade    = request.body['idade']
         diarista.endereco = request.body['endereco']
+        diarista.idade    = request.body['idade']
 
         return await this.diaristaRepository.save(diarista);
     }
@@ -59,6 +60,12 @@ export class DiaristaController {
 
         return await this.diaristaRepository.save(diarista);
 
+    }
+
+    @Delete(':id') // Excluir
+    @Redirect('/diaristas')
+    async delete(@Param('id') id: number){
+        return await this.diaristaRepository.delete(id)
     }
 }
 

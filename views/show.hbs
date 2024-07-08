@@ -9,6 +9,7 @@
                     <th>Nome</th>
                     <th>Idade</th>
                     <th>Endereço</th>
+                    <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -22,6 +23,12 @@
                         </td>
                         <td>{{this.idade}}</td>
                         <td>{{this.endereco}}</td>
+                        <td class="d-flex gap-2">
+                            <a href="/diaristas/{{this.id}}/edit" class="btn btn-outline-warning">Edit  </a>
+                            <form action="/diaristas/{{this.id}}?_method=DELETE" method="POST">
+                                <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Quer apagar ?')">Del</button>
+                            </form>
+                        </td>
                     </tr>
                 {{/each}}
             </tbody>

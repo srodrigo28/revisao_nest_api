@@ -1,12 +1,11 @@
 ### Iniciando com NestJS
 
 * Fundamentos NestJS
-```
+``` OK
 2hs --> https://www.treinaweb.com.br/painel/cursos/nestjs-fundamentos
 ```
 
-* ultimo visto
-https://www.treinaweb.com.br/painel/cursos/nestjs-fundamentos/aula/6/subaula/2
+#### Finalizado com sucesso o Crud
 
 #### Referências
 * TypeORM 3hs
