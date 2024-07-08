@@ -13,12 +13,12 @@ export class DiaristaController {
     @Get()
     @Render('listar_diaristas')
     async listarDiaristas() {
-        return { diaristas: await this.diaristaRepository.find() };
+        return { diaristas: await this.diaristaRepository.find(), titulo: 'Lista de Diaristas' };
     }
 
     @Get(':id')
     @Render('detalhes')
     async exibirDiarista(@Param('id') id: number) {
-        return { diarista: await this.diaristaRepository.findOneBy({id: id}) };
+        return { diarista: await this.diaristaRepository.findOneBy({id: id}), titulo: 'Detalhes '  };
     }
 }

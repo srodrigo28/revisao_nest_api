@@ -51,6 +51,11 @@ npm start
 npm i hbs
 ```
 
+* Express-HandlerBars
+```
+npm i express-handlebars
+```
+
 * TypeOrm mysql2
 ```
 npm i --save @nestjs/typeorm typeorm mysql2
